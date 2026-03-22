@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { ArrowRight, Pill, Megaphone, Palette, Award, MapPin, Phone } from 'lucide-react';
+import { ArrowRight, Pill, Megaphone, Palette, Award, MapPin, Phone, Download } from 'lucide-react';
 
 const competences = [
   { icon: Pill, titre: 'Auxiliaire de Pharmacie', desc: 'Dispensation des médicaments, conseil patient, gestion des stocks et ordonnances.' },
@@ -44,9 +44,12 @@ export default function Home() {
             
             </p>
             <div className="flex flex-wrap gap-4">
-              <Link href="/services" className="btn-bordeaux">Découvrir mes services <ArrowRight size={16} className="inline ml-2" /></Link>
-              <Link href="/contact" className="btn-outline">Me contacter</Link>
-            </div>
+  <Link href="/services" className="btn-bordeaux">Découvrir mes services <ArrowRight size={16} className="inline ml-2" /></Link>
+  <Link href="/contact" className="btn-outline">Me contacter</Link>
+  <a href="/cv-merveille-kodja.pdf" download className="btn-outline flex items-center gap-2">
+    <Download size={16} /> Télécharger CV
+  </a>
+</div>
           </div>
 
           <div className="animate-fade-up delay-2 flex justify-center">
