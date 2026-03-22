@@ -15,7 +15,6 @@ export default function Contact() {
       <section className="py-20" style={{ background: 'var(--cream)' }}>
         <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-16">
 
-          {/* Infos contact */}
           <div>
             <h2 className="font-display text-3xl font-bold mb-2">Prenons contact</h2>
             <div className="section-line" />
@@ -69,7 +68,7 @@ export default function Contact() {
                 className="flex items-center gap-2 px-4 py-3 bg-white border border-gray-200 text-sm font-medium hover:border-[var(--bordeaux)] hover:text-[var(--bordeaux)] transition-all">
                 <Instagram size={16} /> Instagram
               </a>
-              <a href="https://wa.me/22901452133321" target="_blank" rel="noopener noreferrer"
+              <a href="https://wa.me/22957581116" target="_blank" rel="noopener noreferrer"
                 className="flex items-center gap-2 px-4 py-3 bg-white border border-gray-200 text-sm font-medium hover:border-[var(--bordeaux)] hover:text-[var(--bordeaux)] transition-all">
                 <MessageCircle size={16} /> WhatsApp
               </a>
@@ -77,47 +76,46 @@ export default function Contact() {
           </div>
 
           <div className="bg-white p-10 border border-gray-100 rounded-sm shadow-sm">
-  <h3 className="font-display text-2xl font-bold mb-6">Envoyer un message</h3>
-  <form name="contact" method="POST" data-netlify="true" className="flex flex-col gap-5">
-    <input type="hidden" name="form-name" value="contact" />
-    <div className="grid grid-cols-2 gap-4">
-      <div>
-        <label className="text-xs font-medium tracking-wide uppercase text-gray-500 block mb-2">Prénom</label>
-        <input type="text" name="prenom" placeholder="Jean" required className="w-full border border-gray-200 px-4 py-3 text-sm outline-none focus:border-[var(--bordeaux)] transition-colors rounded-sm" />
-      </div>
-      <div>
-        <label className="text-xs font-medium tracking-wide uppercase text-gray-500 block mb-2">Nom</label>
-        <input type="text" name="nom" placeholder="Dupont" required className="w-full border border-gray-200 px-4 py-3 text-sm outline-none focus:border-[var(--bordeaux)] transition-colors rounded-sm" />
-      </div>
-    </div>
-    <div>
-      <label className="text-xs font-medium tracking-wide uppercase text-gray-500 block mb-2">Email</label>
-      <input type="email" name="email" placeholder="jean@exemple.com" required className="w-full border border-gray-200 px-4 py-3 text-sm outline-none focus:border-[var(--bordeaux)] transition-colors rounded-sm" />
-    </div>
-    <div>
-      <label className="text-xs font-medium tracking-wide uppercase text-gray-500 block mb-2">Téléphone</label>
-      <input type="tel" name="telephone" placeholder="+229 00 00 00 00" className="w-full border border-gray-200 px-4 py-3 text-sm outline-none focus:border-[var(--bordeaux)] transition-colors rounded-sm" />
-    </div>
-    <div>
-      <label className="text-xs font-medium tracking-wide uppercase text-gray-500 block mb-2">Sujet</label>
-      <select name="sujet" className="w-full border border-gray-200 px-4 py-3 text-sm outline-none focus:border-[var(--bordeaux)] transition-colors rounded-sm bg-white">
-        <option>Communication officinale</option>
-        <option>Création de visuels</option>
-        <option>Rédaction de contenus</option>
-        <option>Gestion réseaux sociaux</option>
-        <option>Autre</option>
-      </select>
-    </div>
-    <div>
-      <label className="text-xs font-medium tracking-wide uppercase text-gray-500 block mb-2">Message</label>
-      <textarea rows={5} name="message" placeholder="Décrivez votre projet ou votre demande..." required className="w-full border border-gray-200 px-4 py-3 text-sm outline-none focus:border-[var(--bordeaux)] transition-colors rounded-sm resize-none" />
-    </div>
-    <button type="submit" className="btn-bordeaux text-center w-full">
-      Envoyer le message
-    </button>
-    <p className="text-xs text-gray-400 text-center">Ou écrivez directement sur WhatsApp pour une réponse plus rapide</p>
-  </form>
-</div>
+            <h3 className="font-display text-2xl font-bold mb-6">Envoyer un message</h3>
+            <form action="https://formspree.io/f/xreyvwba" method="POST" className="flex flex-col gap-5">
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="text-xs font-medium tracking-wide uppercase text-gray-500 block mb-2">Prénom</label>
+                  <input type="text" name="prenom" placeholder="Jean" required className="w-full border border-gray-200 px-4 py-3 text-sm outline-none focus:border-[var(--bordeaux)] transition-colors rounded-sm" />
+                </div>
+                <div>
+                  <label className="text-xs font-medium tracking-wide uppercase text-gray-500 block mb-2">Nom</label>
+                  <input type="text" name="nom" placeholder="Dupont" required className="w-full border border-gray-200 px-4 py-3 text-sm outline-none focus:border-[var(--bordeaux)] transition-colors rounded-sm" />
+                </div>
+              </div>
+              <div>
+                <label className="text-xs font-medium tracking-wide uppercase text-gray-500 block mb-2">Email</label>
+                <input type="email" name="email" placeholder="jean@exemple.com" required className="w-full border border-gray-200 px-4 py-3 text-sm outline-none focus:border-[var(--bordeaux)] transition-colors rounded-sm" />
+              </div>
+              <div>
+                <label className="text-xs font-medium tracking-wide uppercase text-gray-500 block mb-2">Téléphone</label>
+                <input type="tel" name="telephone" placeholder="+229 00 00 00 00" className="w-full border border-gray-200 px-4 py-3 text-sm outline-none focus:border-[var(--bordeaux)] transition-colors rounded-sm" />
+              </div>
+              <div>
+                <label className="text-xs font-medium tracking-wide uppercase text-gray-500 block mb-2">Sujet</label>
+                <select name="sujet" className="w-full border border-gray-200 px-4 py-3 text-sm outline-none focus:border-[var(--bordeaux)] transition-colors rounded-sm bg-white">
+                  <option>Communication officinale</option>
+                  <option>Création de visuels</option>
+                  <option>Rédaction de contenus</option>
+                  <option>Gestion réseaux sociaux</option>
+                  <option>Autre</option>
+                </select>
+              </div>
+              <div>
+                <label className="text-xs font-medium tracking-wide uppercase text-gray-500 block mb-2">Message</label>
+                <textarea rows={5} name="message" placeholder="Décrivez votre projet ou votre demande..." required className="w-full border border-gray-200 px-4 py-3 text-sm outline-none focus:border-[var(--bordeaux)] transition-colors rounded-sm resize-none" />
+              </div>
+              <button type="submit" className="btn-bordeaux text-center w-full">
+                Envoyer le message
+              </button>
+              <p className="text-xs text-gray-400 text-center">Ou écrivez directement sur WhatsApp pour une réponse plus rapide</p>
+            </form>
+          </div>
 
         </div>
       </section>
