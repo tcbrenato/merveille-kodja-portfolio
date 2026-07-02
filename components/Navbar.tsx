@@ -1,58 +1,120 @@
 'use client';
-import { useState, useEffect } from 'react';
+
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Menu, X } from 'lucide-react';
-import Image from 'next/image';
 
 const links = [
   { href: '/', label: 'Accueil' },
   { href: '/services', label: 'Services' },
   { href: '/realisations', label: 'Réalisations' },
-  { href: '/blog', label: 'Blog' },
   { href: '/contact', label: 'Contact' },
 ];
 
 export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
 
+  // Ferme le menu mobile automatiquement si on change de page
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 30);
-    window.addEventListener('scroll', onScroll);
-    return () => window.removeEventListener('scroll', onScroll);
-  }, []);
+    setOpen(false);
+  }, [pathname]);
 
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-white/95 backdrop-blur-sm shadow-sm' : 'bg-white shadow-sm'}`}>
-      <div className="max-w-6xl mx-auto px-6 py-3 flex items-center justify-between">
-        <Link href="/">
-          <Image src="/logo.png" alt="Merveille Kodja" width={80} height={35} className="object-contain" />
+    <header className="fixed top-0 w-full z-50" style={{ background: 'var(--bordeaux)' }}>
+      <div className="max-w-6xl mx-auto px-6 py-5 flex items-center justify-between">
+        {/* LOGO */}
+        <Link
+          href="/"
+          className="font-display text-lg font-bold tracking-[0.15em] uppercase relative z-50 text-white"
+        >
+          M. Kodja
         </Link>
-        <nav className="hidden md:flex items-center gap-8">
-          {links.map(l => (
-            <Link key={l.href} href={l.href}
-              className={`text-sm font-medium tracking-wide transition-colors hover:text-[var(--bordeaux)] ${pathname === l.href ? 'text-[var(--bordeaux)] border-b border-[var(--bordeaux)]' : 'text-[var(--dark)]'}`}>
-              {l.label}
-            </Link>
-          ))}
-          <Link href="/contact" className="btn-bordeaux text-sm">Collaborer</Link>
+
+        {/* NAV DESKTOP */}
+        <nav className="hidden md:flex items-center gap-10">
+          {links.map((l) => {
+            const active = pathname === l.href;
+            return (
+              <Link
+                key={l.href}
+                href={l.href}
+                className="group relative text-[11px] uppercase tracking-[0.2em] font-medium transition-colors duration-300"
+                style={{ color: active ? 'var(--gold)' : 'rgba(255,255,255,0.85)' }}
+              >
+                {l.label}
+                <span
+                  className="absolute -bottom-2 left-0 h-[1px] transition-all duration-300"
+                  style={{
+                    background: 'var(--gold)',
+                    width: active ? '100%' : '0%',
+                  }}
+                />
+                {!active && (
+                  <span
+                    className="absolute -bottom-2 left-0 h-[1px] w-0 transition-all duration-300 group-hover:w-full"
+                    style={{ background: 'var(--gold)' }}
+                  />
+                )}
+              </Link>
+            );
+          })}
         </nav>
-        <button className="md:hidden" onClick={() => setOpen(!open)}>
-          {open ? <X size={22} /> : <Menu size={22} />}
+
+        {/* CTA DESKTOP */}
+        <Link
+          href="/contact"
+          className="hidden md:inline-flex items-center text-[11px] uppercase tracking-[0.2em] font-semibold px-5 py-2.5 rounded-full transition-transform hover:scale-105"
+          style={{ background: 'white', color: 'var(--bordeaux)' }}
+        >
+          Me contacter
+        </Link>
+
+        {/* TOGGLE MOBILE */}
+        <button
+          className="md:hidden relative z-50 p-1"
+          onClick={() => setOpen((v) => !v)}
+          aria-label={open ? 'Fermer le menu' : 'Ouvrir le menu'}
+          aria-expanded={open}
+        >
+          {open ? <X size={24} color="white" /> : <Menu size={24} color="white" />}
         </button>
       </div>
-      {open && (
-        <div className="md:hidden bg-white/98 backdrop-blur-sm border-t px-6 py-6 flex flex-col gap-5">
-          {links.map(l => (
-            <Link key={l.href} href={l.href} onClick={() => setOpen(false)}
-              className={`text-sm font-medium tracking-wide ${pathname === l.href ? 'text-[var(--bordeaux)]' : ''}`}>
+
+      {/* MENU MOBILE — PLEIN ÉCRAN */}
+      <div
+        className={`md:hidden fixed inset-0 flex flex-col items-center justify-center gap-2 transition-opacity duration-300 ${
+          open ? 'opacity-100 visible' : 'opacity-0 invisible pointer-events-none'
+        }`}
+        style={{ background: 'var(--bordeaux)' }}
+      >
+        {links.map((l, i) => {
+          const active = pathname === l.href;
+          return (
+            <Link
+              key={l.href}
+              href={l.href}
+              onClick={() => setOpen(false)}
+              className="flex items-baseline gap-3 py-3 font-display text-3xl font-semibold transition-colors"
+              style={{ color: active ? 'var(--gold)' : 'white' }}
+            >
+              <span className="font-mono text-xs" style={{ color: 'var(--gold)' }}>
+                {String(i + 1).padStart(2, '0')}
+              </span>
               {l.label}
             </Link>
-          ))}
-        </div>
-      )}
+          );
+        })}
+        <Link
+          href="/contact"
+          onClick={() => setOpen(false)}
+          className="mt-8 text-[11px] uppercase tracking-[0.2em] font-semibold px-6 py-3 rounded-full"
+          style={{ background: 'white', color: 'var(--bordeaux)' }}
+        >
+          Me contacter
+        </Link>
+      </div>
     </header>
   );
 }
